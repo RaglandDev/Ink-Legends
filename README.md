@@ -45,4 +45,4 @@ Break through the enemies defense towers and destroy their inkwell. Stay alive a
 Movement and combat are point and click, including skill shots. A player has 5 inventory slots to store items/upgrades. There is a shop to buy upgrades from. When enemies die they drop exp and gold for the player. The player can level up 3 times and unlock a new ability at each level.
 
 ## Main UI
-![image](concept\ui_sketch.png)
+![image](concept/ui_sketch.png)
