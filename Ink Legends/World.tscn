@@ -1,0 +1,28 @@
+[gd_scene load_steps=7 format=3 uid="uid://gdrbna62gnrn"]
+
+[ext_resource type="PackedScene" uid="uid://p3n1l87pgfg5" path="res://Floor.tscn" id="1_58e01"]
+[ext_resource type="PackedScene" uid="uid://dkscthths40ik" path="res://PlayerBody.tscn" id="2_oq0jb"]
+[ext_resource type="Script" path="res://PlayerBody.gd" id="3_04ean"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ncx7n"]
+
+[sub_resource type="Sky" id="Sky_brria"]
+sky_material = SubResource("ProceduralSkyMaterial_ncx7n")
+
+[sub_resource type="Environment" id="Environment_gu4o7"]
+background_mode = 2
+sky = SubResource("Sky_brria")
+
+[node name="World" type="Node3D"]
+
+[node name="Floor" parent="." instance=ExtResource("1_58e01")]
+
+[node name="PlayerBody" parent="." instance=ExtResource("2_oq0jb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("3_04ean")
+
+[node name="Camera3D" type="Camera3D" parent="." groups=["Camera"]]
+transform = Transform3D(0.614079, -0.604597, 0.507317, 1.28302e-08, 0.642788, 0.766044, -0.789245, -0.470412, 0.394722, 5.99655, 12.2178, 4.3314)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_gu4o7")

@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dkscthths40ik"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_fpv8i"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_211dj"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_mrcft"]
+
+[node name="PlayerBody" type="CharacterBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_fpv8i")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_211dj")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 0.1
+target_desired_distance = 0.1
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(4.86956e-15, -2.50103e-08, -0.529762, -0.540096, -2.50103e-08, 0, -2.36083e-08, 0.57217, -2.31566e-08, 0.0722778, 0.519873, -0.241657)
+mesh = SubResource("CapsuleMesh_mrcft")
