@@ -1,10 +1,53 @@
-[gd_scene load_steps=4 format=3 uid="uid://dkscthths40ik"]
+[gd_scene load_steps=16 format=3 uid="uid://dkscthths40ik"]
+
+[ext_resource type="Script" path="res://HUD.gd" id="1_ilim6"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_fpv8i"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_211dj"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_mrcft"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ub7at"]
+bg_color = Color(0.623529, 0, 0, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gcyc6"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="InputEventAction" id="InputEventAction_ooops"]
+action = &"Q"
+
+[sub_resource type="Shortcut" id="Shortcut_o6dcm"]
+events = [SubResource("InputEventAction_ooops")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_wlyvh"]
+action = &"W"
+
+[sub_resource type="Shortcut" id="Shortcut_i10xy"]
+events = [SubResource("InputEventAction_wlyvh")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_pbcta"]
+action = &"E"
+
+[sub_resource type="Shortcut" id="Shortcut_qheoc"]
+events = [SubResource("InputEventAction_pbcta")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_tjp1e"]
+action = &"R"
+
+[sub_resource type="Shortcut" id="Shortcut_d2k8i"]
+events = [SubResource("InputEventAction_tjp1e")]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_oyylp"]
+size = Vector2(50, 50)
 
 [node name="PlayerBody" type="CharacterBody3D"]
 
@@ -21,3 +64,116 @@ target_desired_distance = 0.1
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(4.86956e-15, -2.50103e-08, -0.529762, -0.540096, -2.50103e-08, 0, -2.36083e-08, 0.57217, -2.31566e-08, 0.0722778, 0.519873, -0.241657)
 mesh = SubResource("CapsuleMesh_mrcft")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("1_ilim6")
+
+[node name="Control" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Bottom" type="HBoxContainer" parent="HUD/Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -505.0
+offset_top = -138.0
+offset_right = 505.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HIBar" type="VBoxContainer" parent="HUD/Control/Bottom"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="Health" type="ProgressBar" parent="HUD/Control/Bottom/HIBar"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_styles/fill = SubResource("StyleBoxFlat_ub7at")
+
+[node name="Ink" type="ProgressBar" parent="HUD/Control/Bottom/HIBar"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_styles/fill = SubResource("StyleBoxFlat_gcyc6")
+
+[node name="Spacer" type="MarginContainer" parent="HUD/Control/Bottom"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="AbilityBar" type="HBoxContainer" parent="HUD/Control/Bottom"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Q" type="Button" parent="HUD/Control/Bottom/AbilityBar"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+action_mode = 0
+shortcut = SubResource("Shortcut_o6dcm")
+text = "Q"
+
+[node name="W" type="Button" parent="HUD/Control/Bottom/AbilityBar"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+action_mode = 0
+shortcut = SubResource("Shortcut_i10xy")
+text = "W"
+
+[node name="E" type="Button" parent="HUD/Control/Bottom/AbilityBar"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+action_mode = 0
+shortcut = SubResource("Shortcut_qheoc")
+text = "E"
+
+[node name="R" type="Button" parent="HUD/Control/Bottom/AbilityBar"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+action_mode = 0
+shortcut = SubResource("Shortcut_d2k8i")
+text = "R"
+
+[node name="Spacer2" type="MarginContainer" parent="HUD/Control/Bottom"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="Shop" type="GridContainer" parent="HUD/Control/Bottom"]
+layout_mode = 2
+columns = 3
+
+[node name="Item1" type="Button" parent="HUD/Control/Bottom/Shop"]
+layout_mode = 2
+icon = SubResource("PlaceholderTexture2D_oyylp")
+
+[node name="Item2" type="Button" parent="HUD/Control/Bottom/Shop"]
+layout_mode = 2
+icon = SubResource("PlaceholderTexture2D_oyylp")
+
+[node name="Item3" type="Button" parent="HUD/Control/Bottom/Shop"]
+layout_mode = 2
+icon = SubResource("PlaceholderTexture2D_oyylp")
+
+[node name="Item4" type="Button" parent="HUD/Control/Bottom/Shop"]
+layout_mode = 2
+icon = SubResource("PlaceholderTexture2D_oyylp")
+
+[node name="Item5" type="Button" parent="HUD/Control/Bottom/Shop"]
+layout_mode = 2
+icon = SubResource("PlaceholderTexture2D_oyylp")
+
+[node name="Item6" type="Button" parent="HUD/Control/Bottom/Shop"]
+layout_mode = 2
+icon = SubResource("PlaceholderTexture2D_oyylp")

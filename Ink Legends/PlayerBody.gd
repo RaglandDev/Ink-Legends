@@ -1,6 +1,10 @@
 extends CharacterBody3D
+
 @onready var navigationAgent : NavigationAgent3D = $NavigationAgent3D
-var SPEED = 5
+
+const SPEED = 5
+var hp = 50
+var ink = 50
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
