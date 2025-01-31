@@ -121,6 +121,7 @@ alignment = 1
 [node name="Q" type="Button" parent="HUD/Control/Bottom/AbilityBar"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
+focus_mode = 0
 action_mode = 0
 shortcut = SubResource("Shortcut_o6dcm")
 text = "Q"
@@ -128,6 +129,7 @@ text = "Q"
 [node name="W" type="Button" parent="HUD/Control/Bottom/AbilityBar"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
+focus_mode = 0
 action_mode = 0
 shortcut = SubResource("Shortcut_i10xy")
 text = "W"
@@ -135,6 +137,7 @@ text = "W"
 [node name="E" type="Button" parent="HUD/Control/Bottom/AbilityBar"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
+focus_mode = 0
 action_mode = 0
 shortcut = SubResource("Shortcut_qheoc")
 text = "E"
@@ -142,6 +145,7 @@ text = "E"
 [node name="R" type="Button" parent="HUD/Control/Bottom/AbilityBar"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
+focus_mode = 0
 action_mode = 0
 shortcut = SubResource("Shortcut_d2k8i")
 text = "R"
@@ -156,24 +160,36 @@ columns = 3
 
 [node name="Item1" type="Button" parent="HUD/Control/Bottom/Shop"]
 layout_mode = 2
+focus_mode = 0
+disabled = true
 icon = SubResource("PlaceholderTexture2D_oyylp")
 
 [node name="Item2" type="Button" parent="HUD/Control/Bottom/Shop"]
 layout_mode = 2
+focus_mode = 0
+disabled = true
 icon = SubResource("PlaceholderTexture2D_oyylp")
 
 [node name="Item3" type="Button" parent="HUD/Control/Bottom/Shop"]
 layout_mode = 2
+focus_mode = 0
+disabled = true
 icon = SubResource("PlaceholderTexture2D_oyylp")
 
 [node name="Item4" type="Button" parent="HUD/Control/Bottom/Shop"]
 layout_mode = 2
+focus_mode = 0
+disabled = true
 icon = SubResource("PlaceholderTexture2D_oyylp")
 
 [node name="Item5" type="Button" parent="HUD/Control/Bottom/Shop"]
 layout_mode = 2
+focus_mode = 0
+disabled = true
 icon = SubResource("PlaceholderTexture2D_oyylp")
 
 [node name="Item6" type="Button" parent="HUD/Control/Bottom/Shop"]
 layout_mode = 2
+focus_mode = 0
+disabled = true
 icon = SubResource("PlaceholderTexture2D_oyylp")
