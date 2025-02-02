@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://gdrbna62gnrn"]
+[gd_scene load_steps=12 format=3 uid="uid://gdrbna62gnrn"]
 
 [ext_resource type="PackedScene" uid="uid://p3n1l87pgfg5" path="res://Floor.tscn" id="1_58e01"]
 [ext_resource type="PackedScene" uid="uid://dkscthths40ik" path="res://PlayerBody.tscn" id="2_oq0jb"]
@@ -12,7 +12,17 @@ sky_material = SubResource("ProceduralSkyMaterial_ncx7n")
 
 [sub_resource type="Environment" id="Environment_gu4o7"]
 background_mode = 2
+background_energy_multiplier = 1.5
 sky = SubResource("Sky_brria")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_t81ph"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_hye75"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_0jpgj"]
+radial_segments = 6
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_c4b1l"]
 
 [node name="World" type="Node3D"]
 
@@ -28,3 +38,57 @@ script = ExtResource("4_fmeqi")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_gu4o7")
+
+[node name="Tower1P" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 1, 0, 3, 25)
+mesh = SubResource("CylinderMesh_t81ph")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Tower1P"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Tower1P/StaticBody3D"]
+shape = SubResource("CylinderShape3D_hye75")
+
+[node name="Tower2P" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 1, 0, 3, 12.5)
+mesh = SubResource("CylinderMesh_t81ph")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Tower2P"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Tower2P/StaticBody3D"]
+shape = SubResource("CylinderShape3D_hye75")
+
+[node name="Tower2E" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 1, 0, 3, -12.5)
+mesh = SubResource("CylinderMesh_t81ph")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Tower2E"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Tower2E/StaticBody3D"]
+shape = SubResource("CylinderShape3D_hye75")
+
+[node name="Tower1E" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 1, 0, 3, -25)
+mesh = SubResource("CylinderMesh_t81ph")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Tower1E"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Tower1E/StaticBody3D"]
+shape = SubResource("CylinderShape3D_hye75")
+
+[node name="WellP" type="MeshInstance3D" parent="."]
+transform = Transform3D(-3.49691e-07, 0, 8, 0, 4, 0, -8, 0, -3.49691e-07, 0, 4, 40)
+mesh = SubResource("CylinderMesh_0jpgj")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="WellP"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WellP/StaticBody3D"]
+shape = SubResource("CylinderShape3D_c4b1l")
+
+[node name="WellE" type="MeshInstance3D" parent="."]
+transform = Transform3D(-3.49691e-07, 0, 8, 0, 4, 0, -8, 0, -3.49691e-07, 0, 4, -40)
+mesh = SubResource("CylinderMesh_0jpgj")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="WellE"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WellE/StaticBody3D"]
+shape = SubResource("CylinderShape3D_c4b1l")
