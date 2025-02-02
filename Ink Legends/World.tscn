@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://gdrbna62gnrn"]
+[gd_scene load_steps=15 format=3 uid="uid://gdrbna62gnrn"]
 
 [ext_resource type="PackedScene" uid="uid://dkscthths40ik" path="res://PlayerBody.tscn" id="2_oq0jb"]
 [ext_resource type="Script" path="res://PlayerBody.gd" id="3_04ean"]
 [ext_resource type="Script" path="res://PlayerCamera.gd" id="4_fmeqi"]
+[ext_resource type="PackedScene" uid="uid://6a5qmhijto5" path="res://MinionBody.tscn" id="4_iis6r"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ncx7n"]
 
@@ -89,6 +90,9 @@ skeleton = NodePath("../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Tower2E/StaticBody3D"]
 shape = SubResource("CylinderShape3D_hye75")
 
+[node name="Marker3D" type="Marker3D" parent="NavigationRegion3D/Tower2E" groups=["Enemy Tower Locations"]]
+transform = Transform3D(1, 0, 0, 0, 0.333333, 0, 0, 0, 1, 0, -1, 0)
+
 [node name="Tower1E" type="MeshInstance3D" parent="NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 1, 0, 3, -25)
 mesh = SubResource("CylinderMesh_t81ph")
@@ -98,6 +102,9 @@ skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Tower1E/StaticBody3D"]
 shape = SubResource("CylinderShape3D_hye75")
+
+[node name="Marker3D" type="Marker3D" parent="NavigationRegion3D/Tower1E" groups=["Enemy Tower Locations"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="WellP" type="MeshInstance3D" parent="NavigationRegion3D"]
 transform = Transform3D(-3.49691e-07, 0, 8, 0, 4, 0, -8, 0, -3.49691e-07, 0, 4, 40)
@@ -118,3 +125,9 @@ skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/WellE/StaticBody3D"]
 shape = SubResource("CylinderShape3D_c4b1l")
+
+[node name="Marker3D" type="Marker3D" parent="NavigationRegion3D/WellE" groups=["Enemy Tower Locations"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="MinionBody" parent="." instance=ExtResource("4_iis6r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)

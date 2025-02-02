@@ -15,10 +15,6 @@ run/main_scene="res://World.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
-[display]
-
-mouse_cursor/custom_image="res://icons8-cursor-100.png"
-
 [input]
 
 RightMouse={

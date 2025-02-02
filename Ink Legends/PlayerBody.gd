@@ -6,16 +6,15 @@ const SPEED = 5
 var hp = 50
 var ink = 50
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if navigationAgent.is_target_reached():
 		return
 	moveToPoint(delta, SPEED)
+	navigationAgent.get_next_path_position()
 
 func moveToPoint(_delta, speed):
 	var targetPos = navigationAgent.target_position
@@ -42,3 +41,4 @@ func _input(_event):
 		rayQuery.to = to
 		var result = space.intersect_ray(rayQuery)
 		navigationAgent.target_position = result.position
+
