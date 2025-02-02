@@ -9,6 +9,7 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_d3ee3"]
 
 [node name="MinionBody" type="CharacterBody3D"]
+collision_layer = 2
 script = ExtResource("1_ud1ne")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -24,4 +25,4 @@ transform = Transform3D(0.25, 0, 0, 0, -1.09278e-08, 0.25, 0, -0.25, -1.09278e-0
 mesh = SubResource("CapsuleMesh_d3ee3")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-debug_enabled = true
+target_desired_distance = 0.1
