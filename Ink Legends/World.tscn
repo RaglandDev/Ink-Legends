@@ -1,7 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://gdrbna62gnrn"]
+[gd_scene load_steps=14 format=3 uid="uid://gdrbna62gnrn"]
 
-[ext_resource type="PackedScene" uid="uid://dkscthths40ik" path="res://PlayerBody.tscn" id="2_oq0jb"]
-[ext_resource type="Script" path="res://PlayerBody.gd" id="3_04ean"]
+[ext_resource type="PackedScene" uid="uid://cuhj2g0w74t7n" path="res://Player.tscn" id="1_agujs"]
 [ext_resource type="Script" path="res://PlayerCamera.gd" id="4_fmeqi"]
 [ext_resource type="Script" path="res://MinionSpawnerP.gd" id="4_ihngv"]
 
@@ -35,9 +34,7 @@ radial_segments = 6
 
 [node name="World" type="Node3D"]
 
-[node name="PlayerBody" parent="." instance=ExtResource("2_oq0jb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-script = ExtResource("3_04ean")
+[node name="Player" parent="." instance=ExtResource("1_agujs")]
 
 [node name="PlayerCamera" type="Camera3D" parent="." groups=["Camera"]]
 transform = Transform3D(0.614079, -0.604597, 0.507317, 1.28302e-08, 0.642788, 0.766044, -0.789245, -0.470412, 0.394722, 5.99655, 12.2178, 4.3314)

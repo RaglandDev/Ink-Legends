@@ -1,8 +1,10 @@
 extends CharacterBody3D
 
 @onready var navigationAgent : NavigationAgent3D = $NavigationAgent3D
+@onready var animationTree : AnimationTree = $AnimationTree
+@onready var stateMachine = animationTree["parameters/playback"]
 
-const SPEED = 5
+var maxSpeed = 5
 var hp = 50
 var ink = 50
 
@@ -12,9 +14,14 @@ func _ready():
 
 func _process(delta):
 	if navigationAgent.is_target_reached():
+		stateMachine.travel("idle")
 		return
-	moveToPoint(delta, SPEED)
+	if self.velocity.x !=0 or self.velocity.z != 0:
+		stateMachine.travel("sprint")
+	moveToPoint(delta, maxSpeed)
 	navigationAgent.get_next_path_position()
+	
+
 
 func moveToPoint(_delta, speed):
 	var targetPos = navigationAgent.target_position
@@ -27,6 +34,7 @@ func faceDirection(direction):
 	var lookAtPos := Vector3(direction.x, global_position.y, direction.z)
 	if lookAtPos != self.position:
 		look_at(lookAtPos, Vector3.UP)
+		rotate_y(deg_to_rad(180))
 	
 func _input(_event):
 	if Input.is_action_just_pressed("RightMouse"):

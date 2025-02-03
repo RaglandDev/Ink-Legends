@@ -6,6 +6,10 @@ const STEP = .5
 @onready var viewportSize = get_viewport().size
 
 func _process(_delta):
+	if Input.is_action_just_pressed("ZoomIn"):
+		self.fov -= 10
+	if Input.is_action_just_pressed("ZoomOut"):
+		self.fov += 10
 	var localMousePos = get_viewport().get_mouse_position()
 	edgeScroll(localMousePos.x, localMousePos.y)
 
