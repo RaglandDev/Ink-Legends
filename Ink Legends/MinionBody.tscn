@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://6a5qmhijto5"]
+[gd_scene load_steps=6 format=3 uid="uid://6a5qmhijto5"]
 
 [ext_resource type="Script" path="res://MinionBody.gd" id="1_ud1ne"]
 
@@ -8,7 +8,9 @@
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_d3ee3"]
 
-[node name="MinionBody" type="CharacterBody3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_gpleq"]
+
+[node name="MinionBody" type="CharacterBody3D" groups=["Player Minions"]]
 collision_layer = 2
 script = ExtResource("1_ud1ne")
 
@@ -26,3 +28,22 @@ mesh = SubResource("CapsuleMesh_d3ee3")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 target_desired_distance = 0.1
+debug_enabled = true
+
+[node name="HitBox" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.53143)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox"]
+shape = SubResource("BoxShape3D_gpleq")
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="Delay" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="area_shape_entered" from="HitBox" to="." method="_on_hit_box_area_shape_entered"]
+[connection signal="area_shape_exited" from="HitBox" to="." method="_on_hit_box_area_shape_exited"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Delay" to="." method="_on_delay_timeout"]

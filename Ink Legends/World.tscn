@@ -1,6 +1,8 @@
 [gd_scene load_steps=14 format=3 uid="uid://gdrbna62gnrn"]
 
 [ext_resource type="PackedScene" uid="uid://cuhj2g0w74t7n" path="res://Player.tscn" id="1_agujs"]
+[ext_resource type="PackedScene" uid="uid://c8ah3uh8ydo3d" path="res://Tower.tscn" id="3_juagv"]
+[ext_resource type="PackedScene" uid="uid://dj6r1p0nhcosp" path="res://Well.tscn" id="4_3rpnx"]
 [ext_resource type="Script" path="res://PlayerCamera.gd" id="4_fmeqi"]
 [ext_resource type="Script" path="res://MinionSpawnerP.gd" id="4_ihngv"]
 
@@ -22,10 +24,6 @@ agent_height = 0.5
 [sub_resource type="BoxMesh" id="BoxMesh_3idhm"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c6uho"]
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_t81ph"]
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_hye75"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_0jpgj"]
 radial_segments = 6
@@ -58,51 +56,8 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor/MeshInstance3D/StaticBody3D"]
 shape = SubResource("BoxShape3D_c6uho")
 
-[node name="Tower1P" type="MeshInstance3D" parent="NavigationRegion3D"]
-transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 1, 0, 3, 25)
-mesh = SubResource("CylinderMesh_t81ph")
-skeleton = NodePath("../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Tower1P"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Tower1P/StaticBody3D"]
-shape = SubResource("CylinderShape3D_hye75")
-
-[node name="Tower2P" type="MeshInstance3D" parent="NavigationRegion3D"]
-transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 1, 0, 3, 12.5)
-mesh = SubResource("CylinderMesh_t81ph")
-skeleton = NodePath("../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Tower2P"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Tower2P/StaticBody3D"]
-shape = SubResource("CylinderShape3D_hye75")
-
-[node name="Tower2E" type="MeshInstance3D" parent="NavigationRegion3D"]
+[node name="Tower2E" parent="NavigationRegion3D" instance=ExtResource("3_juagv")]
 transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 1, 0, 3, -12.5)
-mesh = SubResource("CylinderMesh_t81ph")
-skeleton = NodePath("../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Tower2E"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Tower2E/StaticBody3D"]
-shape = SubResource("CylinderShape3D_hye75")
-
-[node name="Marker3D" type="Marker3D" parent="NavigationRegion3D/Tower2E" groups=["Enemy Tower Locations"]]
-transform = Transform3D(1, 0, 0, 0, 0.333333, 0, 0, 0, 1, 0, -1, 1.00589)
-
-[node name="Tower1E" type="MeshInstance3D" parent="NavigationRegion3D"]
-transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 1, 0, 3, -25)
-mesh = SubResource("CylinderMesh_t81ph")
-skeleton = NodePath("../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Tower1E"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Tower1E/StaticBody3D"]
-shape = SubResource("CylinderShape3D_hye75")
-
-[node name="Marker3D" type="Marker3D" parent="NavigationRegion3D/Tower1E" groups=["Enemy Tower Locations"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0.967606)
 
 [node name="WellP" type="MeshInstance3D" parent="NavigationRegion3D"]
 transform = Transform3D(-3.49691e-07, 0, 8, 0, 4, 0, -8, 0, -3.49691e-07, 0, 4, 40)
@@ -114,18 +69,10 @@ skeleton = NodePath("../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/WellP/StaticBody3D"]
 shape = SubResource("CylinderShape3D_c4b1l")
 
-[node name="WellE" type="MeshInstance3D" parent="NavigationRegion3D"]
-transform = Transform3D(-3.49691e-07, 0, 8, 0, 4, 0, -8, 0, -3.49691e-07, 0, 4, -40)
-mesh = SubResource("CylinderMesh_0jpgj")
-skeleton = NodePath("../..")
+[node name="WellE" parent="NavigationRegion3D" instance=ExtResource("4_3rpnx")]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/WellE"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/WellE/StaticBody3D"]
-shape = SubResource("CylinderShape3D_c4b1l")
-
-[node name="Marker3D" type="Marker3D" parent="NavigationRegion3D/WellE" groups=["Enemy Tower Locations"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.50437, -1, -2.20467e-08)
+[node name="Tower1E" parent="NavigationRegion3D" instance=ExtResource("3_juagv")]
+transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 1, 0, 3, -25)
 
 [node name="MinionSpawnP1" type="Marker3D" parent="." groups=["Player Minion Spawn Locations"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.5, 33)

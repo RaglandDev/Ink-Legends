@@ -5,8 +5,10 @@ extends CharacterBody3D
 const SPEED = 5
 const MAXPOS = Vector3(99999, 99999, 99999)
 
+var tower = null
+
 func _ready():
-	checkTarget() 
+	checkTarget()
 
 func _process(delta):
 	if navigationAgent.is_target_reached():
@@ -27,8 +29,8 @@ func faceDirection(direction):
 func checkTarget():
 	var targetPos = MAXPOS
 	var enemyTowerLocations = get_tree().get_nodes_in_group("Enemy Tower Locations")
-	for tower in enemyTowerLocations:
-		var towerPos = tower.global_position
+	for t in enemyTowerLocations:
+		var towerPos = t.global_position
 		var newDistance = global_position.distance_to(towerPos)
 		var currDistance = global_position.distance_to(targetPos)
 		if newDistance < currDistance:
@@ -40,3 +42,17 @@ func getRandomPointClose(center: Vector3) -> Vector3:
 	var randomAngle = randf_range(0, TAU)  # Random angle in radians
 	var randomRadius = randf_range(0, 1)   # Random radius between 0 and 1 meters
 	return center + Vector3(randomRadius * cos(randomAngle), randomRadius * sin(randomAngle), 0)
+
+
+func _on_hit_box_area_shape_entered(_area_rid, area, _area_shape_index, _local_shape_index):
+	var node = area.get_parent()
+	if node.has_method("takeDamage") and (node.has_method("enemyTower") or node.has_method("enemyWell")):
+		tower = node
+
+
+func _on_timer_timeout():
+	if tower != null:
+		tower.takeDamage(25)
+
+func _on_delay_timeout():
+	checkTarget()
