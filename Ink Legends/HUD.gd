@@ -1,26 +1,30 @@
 extends CanvasLayer
 
-@onready var playerBody = $".."
 @onready var health = $Control/Bottom/HIBar/Health
 @onready var ink = $Control/Bottom/HIBar/Ink
 
 var qScene = preload("res://SkillShot.tscn")
+
+const Q_COST = 20
 
 var player = null
 var qAim = false
 var qHighlight = null
 
 func _ready():
-	health.value = playerBody.hp
-	ink.value = playerBody.ink
+	player = get_tree().get_nodes_in_group("Player")[0]
+	health.value = player.hp
+	ink.value = player.ink
+	
 
 func _process(_delta):
 	if Input.is_action_just_released("Q") and qHighlight != null:
 		qHighlight.queue_free()
 		qAim = false
+		player.ink -= Q_COST
+		ink.value = player.ink
 		return
-	if Input.is_action_just_pressed("Q") and !qAim:
-		player = get_tree().get_nodes_in_group("Player")[0]
+	if Input.is_action_just_pressed("Q") and !qAim and player.ink >= Q_COST:
 		qHighlight = qScene.instantiate()
 		qHighlight.scale = Vector3(10, 10, 10)
 		player.add_child(qHighlight)

@@ -5,8 +5,8 @@ extends CharacterBody3D
 @onready var stateMachine = animationTree["parameters/playback"]
 
 var maxSpeed = 10
-var hp = 50
-var ink = 50
+var hp = 100
+var ink = 100
 
 func _ready():
 	navigationAgent.target_position = position
