@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5cobp65k5nje"]
+
+[ext_resource type="Script" path="res://QProjectile.gd" id="1_jo0kl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fvpch"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_avhwi"]
+material = SubResource("StandardMaterial3D_fvpch")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_w56qx"]
+
+[node name="QProjectile" type="Node3D" groups=["Q Projectile"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+script = ExtResource("1_jo0kl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_avhwi")
+
+[node name="Hitbox" type="Area3D" parent="MeshInstance3D"]
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Hitbox"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_w56qx")
+
+[connection signal="body_entered" from="MeshInstance3D/Hitbox" to="." method="_on_hit_box_body_entered"]

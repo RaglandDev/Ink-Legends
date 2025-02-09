@@ -4,6 +4,7 @@ extends CanvasLayer
 @onready var ink = $Control/Bottom/HIBar/Ink
 
 var qScene = preload("res://SkillShot.tscn")
+var qProjScene = preload("res://QProjectile.tscn")
 
 const Q_COST = 20
 
@@ -23,10 +24,15 @@ func _process(_delta):
 		qAim = false
 		player.ink -= Q_COST
 		ink.value = player.ink
+		var projectile = qProjScene.instantiate()
+		get_tree().root.add_child(projectile)
+		projectile.targetPos = qHighlight.get_node("Endpoint").global_position
+		projectile.position = qHighlight.get_node("Startpoint").global_position
+		projectile.look_at(projectile.targetPos)
 		return
 	if Input.is_action_just_pressed("Q") and !qAim and player.ink >= Q_COST:
 		qHighlight = qScene.instantiate()
-		qHighlight.scale = Vector3(10, 10, 10)
+		qHighlight.scale = Vector3(12, 12, 12)
 		player.add_child(qHighlight)
 		qAim = true
 		

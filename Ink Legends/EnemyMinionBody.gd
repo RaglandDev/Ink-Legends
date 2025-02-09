@@ -5,6 +5,8 @@ extends CharacterBody3D
 const SPEED = 3
 const MAXPOS = Vector3(99999, 99999, 99999)
 
+var hp = 10
+
 var tower = null
 var gameOver = false
 
@@ -20,6 +22,9 @@ func _process(delta):
 		return	
 	var next_position = navigationAgent.get_next_path_position()
 	moveToPoint(delta, SPEED, next_position)
+	
+	if hp <= 0:
+		queue_free()
 
 func moveToPoint(_delta, speed, next_position):
 	var direction = global_position.direction_to(next_position)
@@ -65,3 +70,6 @@ func _on_delay_timeout():
 
 func _on_game_over():
 	gameOver = true
+
+func takeDamage(amount):
+	hp -= amount
