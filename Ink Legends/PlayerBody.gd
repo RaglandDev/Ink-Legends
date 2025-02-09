@@ -47,6 +47,7 @@ func _input(_event):
 		var rayQuery = PhysicsRayQueryParameters3D.new()
 		rayQuery.from = from
 		rayQuery.to = to
+		rayQuery.exclude = [self.get_rid()] # raycast ignore player model
 		var result = space.intersect_ray(rayQuery)
 		result.position.y = 0 # prevent vertical movement
 		navigationAgent.target_position = result.position
