@@ -48,5 +48,6 @@ func _input(_event):
 		rayQuery.from = from
 		rayQuery.to = to
 		var result = space.intersect_ray(rayQuery)
+		result.position.y = 0 # prevent vertical movement
 		navigationAgent.target_position = result.position
 
