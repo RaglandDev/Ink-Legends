@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 @onready var navigationAgent = $NavigationAgent3D
 
-const SPEED = 5
+const SPEED = 3
 const MAXPOS = Vector3(99999, 99999, 99999)
 
 var tower = null

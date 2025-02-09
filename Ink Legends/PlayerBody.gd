@@ -4,12 +4,12 @@ extends CharacterBody3D
 @onready var animationTree : AnimationTree = $AnimationTree
 @onready var stateMachine = animationTree["parameters/playback"]
 
-var maxSpeed = 5
+var maxSpeed = 10
 var hp = 50
 var ink = 50
 
 func _ready():
-	pass # Replace with function body.
+	navigationAgent.target_position = position
 
 
 func _process(delta):

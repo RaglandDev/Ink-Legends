@@ -1,8 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://dj6r1p0nhcosp"]
+[gd_scene load_steps=6 format=3 uid="uid://dj6r1p0nhcosp"]
 
 [ext_resource type="Script" path="res://Well.gd" id="1_ayrbg"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eaxuk"]
+albedo_color = Color(0, 0, 0, 1)
+
 [sub_resource type="CylinderMesh" id="CylinderMesh_0jpgj"]
+material = SubResource("StandardMaterial3D_eaxuk")
 radial_segments = 6
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_c4b1l"]

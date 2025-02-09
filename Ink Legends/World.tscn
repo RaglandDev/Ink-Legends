@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://gdrbna62gnrn"]
+[gd_scene load_steps=16 format=3 uid="uid://gdrbna62gnrn"]
 
 [ext_resource type="PackedScene" uid="uid://cuhj2g0w74t7n" path="res://Player.tscn" id="1_agujs"]
 [ext_resource type="PackedScene" uid="uid://c8ah3uh8ydo3d" path="res://Tower.tscn" id="3_juagv"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://bwc7ai4ytptmt" path="res://TowerP.tscn" id="4_ihj53"]
 [ext_resource type="Script" path="res://MinionSpawnerP.gd" id="4_ihngv"]
 [ext_resource type="PackedScene" uid="uid://dhslimltkthlg" path="res://WellP.tscn" id="6_t1tl6"]
+[ext_resource type="PackedScene" uid="uid://f1w1c2342ty" path="res://PlayerOrb.tscn" id="8_wnqkc"]
+[ext_resource type="PackedScene" uid="uid://dhksms188wldj" path="res://EnemyOrb.tscn" id="9_udeog"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ncx7n"]
 
@@ -30,6 +32,7 @@ agent_height = 0.5
 [node name="World" type="Node3D"]
 
 [node name="Player" parent="." instance=ExtResource("1_agujs")]
+transform = Transform3D(-0.2, 0, -1.74846e-08, 0, 0.2, 0, 1.74846e-08, 0, -0.2, 0, 0.1, 0)
 
 [node name="PlayerCamera" type="Camera3D" parent="." groups=["Camera"]]
 transform = Transform3D(0.614079, -0.604597, 0.507317, 1.28302e-08, 0.642788, 0.766044, -0.789245, -0.470412, 0.394722, 5.99655, 12.2178, 4.3314)
@@ -56,11 +59,20 @@ shape = SubResource("BoxShape3D_c6uho")
 [node name="Tower2E" parent="NavigationRegion3D" instance=ExtResource("3_juagv")]
 transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 1, 0, 3, -12.5)
 
+[node name="EnemyOrb" parent="NavigationRegion3D/Tower2E" instance=ExtResource("9_udeog")]
+transform = Transform3D(2.5, 0, 0, 0, 0.833333, 0, 0, 0, 2.5, 0, 1.5, 0)
+
 [node name="Tower2P" parent="NavigationRegion3D" instance=ExtResource("4_ihj53")]
 transform = Transform3D(1.19249e-08, 0, -1, 0, 3, 0, 1, 0, 1.19249e-08, 0, 3, 12.5)
 
+[node name="PlayerOrb" parent="NavigationRegion3D/Tower2P" instance=ExtResource("8_wnqkc")]
+transform = Transform3D(2.98122e-08, 0, 2.5, 0, 0.833333, 0, -2.5, 0, 2.98122e-08, 0, 1.5, 0)
+
 [node name="Tower1P" parent="NavigationRegion3D" instance=ExtResource("4_ihj53")]
 transform = Transform3D(1.19249e-08, 0, -1, 0, 3, 0, 1, 0, 1.19249e-08, 0, 3, 25)
+
+[node name="PlayerOrb" parent="NavigationRegion3D/Tower1P" instance=ExtResource("8_wnqkc")]
+transform = Transform3D(2.98122e-08, 0, 2.5, 0, 0.833333, 0, -2.5, 0, 2.98122e-08, 0, 1.5, 0)
 
 [node name="WellE" parent="NavigationRegion3D" instance=ExtResource("4_3rpnx")]
 
@@ -69,6 +81,9 @@ transform = Transform3D(9.5399e-08, 0, -8, 0, 4, 0, 8, 0, 9.5399e-08, 0, 4, 40)
 
 [node name="Tower1E" parent="NavigationRegion3D" instance=ExtResource("3_juagv")]
 transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 1, 0, 3, -25)
+
+[node name="EnemyOrb" parent="NavigationRegion3D/Tower1E" instance=ExtResource("9_udeog")]
+transform = Transform3D(2.5, 0, 0, 0, 0.833333, 0, 0, 0, 2.5, 0, 1.5, 0)
 
 [node name="MinionSpawnP1" type="Marker3D" parent="." groups=["Player Minion Spawn Locations"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.5, 33)

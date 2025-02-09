@@ -1,12 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://6a5qmhijto5"]
+[gd_scene load_steps=8 format=3 uid="uid://6a5qmhijto5"]
 
 [ext_resource type="Script" path="res://MinionBody.gd" id="1_ud1ne"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uu5fm"]
+albedo_color = Color(0, 1, 1, 1)
+
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ayv4b"]
+material = SubResource("StandardMaterial3D_uu5fm")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mcka5"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xm0w7"]
+albedo_color = Color(0, 1, 1, 1)
+
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_d3ee3"]
+material = SubResource("StandardMaterial3D_xm0w7")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gpleq"]
 
