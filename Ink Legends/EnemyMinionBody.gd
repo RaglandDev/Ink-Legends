@@ -6,12 +6,17 @@ const SPEED = 5
 const MAXPOS = Vector3(99999, 99999, 99999)
 
 var tower = null
+var gameOver = false
 
 func _ready():
+	var playerWell = get_tree().get_nodes_in_group("Player Well")[0]
+	var enemyWell = get_tree().get_nodes_in_group("Enemy Well")[0]
+	playerWell.enemyWon.connect(_on_game_over)
+	enemyWell.playerWon.connect(_on_game_over)
 	checkTarget()
 
 func _process(delta):
-	if navigationAgent.is_target_reached():
+	if navigationAgent.is_target_reached() or gameOver:
 		return	
 	var next_position = navigationAgent.get_next_path_position()
 	moveToPoint(delta, SPEED, next_position)
@@ -23,8 +28,9 @@ func moveToPoint(_delta, speed, next_position):
 	move_and_slide()
 
 func faceDirection(direction):
-	var lookAtPos = Vector3(direction.x, global_position.y, direction.z)
-	look_at(lookAtPos, Vector3.UP)
+	var lookAtPos := Vector3(direction.x, global_position.y, direction.z)
+	if !lookAtPos.is_equal_approx(self.position):
+		look_at(lookAtPos, Vector3.UP)
 
 func checkTarget():
 	var targetPos = MAXPOS
@@ -56,3 +62,6 @@ func _on_timer_timeout():
 
 func _on_delay_timeout():
 	checkTarget()
+
+func _on_game_over():
+	gameOver = true

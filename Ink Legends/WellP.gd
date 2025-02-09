@@ -1,6 +1,7 @@
 extends MeshInstance3D
 
 var hp = 1000
+signal enemyWon
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -14,6 +15,7 @@ func _process(_delta):
 func takeDamage(amt):
 	hp -= amt
 	if hp <= 0:
+		enemyWon.emit()
 		self.queue_free()
 		
 func playerWell():
