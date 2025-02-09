@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bwc7ai4ytptmt"]
+
+[ext_resource type="Script" path="res://TowerP.gd" id="1_tulq2"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_t81ph"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_hye75"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_jjy8n"]
+radius = 1.5
+
+[node name="Tower2P" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 1, 0, 3, 12.5)
+mesh = SubResource("CylinderMesh_t81ph")
+skeleton = NodePath("../..")
+script = ExtResource("1_tulq2")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("CylinderShape3D_hye75")
+
+[node name="Marker3D" type="Marker3D" parent="." groups=["Player Tower Locations"]]
+transform = Transform3D(1, 0, 0, 0, 0.333333, 0, 0, 0, 1, 0, -0.973671, 0.348458)
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CylinderShape3D_jjy8n")
+
+[connection signal="area_shape_exited" from="Area3D" to="." method="_on_area_3d_area_shape_exited"]
