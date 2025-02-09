@@ -13,9 +13,11 @@ var qAim = false
 var qHighlight = null
 
 func _ready():
-	player = get_tree().get_nodes_in_group("Player")[0]
-	health.value = player.hp
-	ink.value = player.ink
+	if get_tree().get_nodes_in_group("Player").size() >= 1:
+		player = get_tree().get_nodes_in_group("Player")[0]
+	if player != null:
+		health.value = player.hp
+		ink.value = player.ink
 	
 
 func _process(_delta):
@@ -29,6 +31,7 @@ func _process(_delta):
 		projectile.targetPos = qHighlight.get_node("Endpoint").global_position
 		projectile.position = qHighlight.get_node("Startpoint").global_position
 		projectile.look_at(projectile.targetPos)
+		player.q()
 		return
 	if Input.is_action_just_pressed("Q") and !qAim and player.ink >= Q_COST:
 		qHighlight = qScene.instantiate()
@@ -52,5 +55,7 @@ func _process(_delta):
 			result.position.y = qHighlight.position.y
 			qHighlight.look_at(result.position)
 			qHighlight.rotate_y(PI)
+
+
 
 

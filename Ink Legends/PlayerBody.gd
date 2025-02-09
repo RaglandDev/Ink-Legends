@@ -1,27 +1,39 @@
 extends CharacterBody3D
 
 @onready var navigationAgent : NavigationAgent3D = $NavigationAgent3D
-@onready var animationTree : AnimationTree = $AnimationTree
-@onready var stateMachine = animationTree["parameters/playback"]
+@onready var animationTree = $AnimationTree
 
 var maxSpeed = 10
 var hp = 100
 var ink = 100
 
+var idle = false
+var sprint = false 
+var qAttack = false
+
+
 func _ready():
+	idle = true
 	navigationAgent.target_position = position
 
 
 func _process(delta):
+	if position.distance_to(navigationAgent.target_position) > .25:
+		sprint = true
+		idle = false
+		qAttack = false
+	elif !qAttack:
+		idle = true
+		sprint = false
+		qAttack = false
+	animationTree.set("parameters/conditions/idle", idle)
+	animationTree.set("parameters/conditions/sprint", sprint)
+	animationTree.set("parameters/conditions/q", qAttack)
 	if navigationAgent.is_target_reached():
-		stateMachine.travel("idle")
 		return
-	if self.velocity.x !=0 or self.velocity.z != 0:
-		stateMachine.travel("sprint")
 	moveToPoint(delta, maxSpeed)
 	navigationAgent.get_next_path_position()
 	
-
 
 func moveToPoint(_delta, speed):
 	var targetPos = navigationAgent.target_position
@@ -51,4 +63,16 @@ func _input(_event):
 		var result = space.intersect_ray(rayQuery)
 		result.position.y = 0 # prevent vertical movement
 		navigationAgent.target_position = result.position
+
+func q():
+	idle = false
+	sprint = false
+	qAttack = true
+
+
+func _on_animation_player_animation_finished(anim_name):
+	if anim_name == "spell 1h":
+		qAttack = false
+		idle = true 
+		sprint = false
 
