@@ -27,7 +27,6 @@ func _process(delta):
 	
 	if hp <= 0:
 		queue_free()
-		player.ink += 10
 
 func moveToPoint(_delta, speed, next_position):
 	var direction = global_position.direction_to(next_position)
@@ -66,7 +65,7 @@ func _on_hit_box_area_shape_entered(_area_rid, area, _area_shape_index, _local_s
 
 func _on_timer_timeout():
 	if tower != null:
-		tower.takeDamage(25)
+		tower.takeDamage(40)
 
 func _on_delay_timeout():
 	checkTarget()

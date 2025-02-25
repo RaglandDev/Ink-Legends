@@ -2,6 +2,7 @@ extends CanvasLayer
 
 @onready var health = $Control/Bottom/HIBar/Health
 @onready var ink = $Control/Bottom/HIBar/Ink
+@onready var endScene = $VictoryScreen
 
 var qScene = preload("res://SkillShot.tscn")
 var qProjScene = preload("res://QProjectile.tscn")
@@ -18,6 +19,10 @@ func _ready():
 	if player != null:
 		health.value = player.hp
 		ink.value = player.ink
+	var playerWell = get_tree().get_nodes_in_group("Player Well")[0]
+	var enemyWell = get_tree().get_nodes_in_group("Enemy Well")[0]
+	playerWell.enemyWon.connect(_on_defeat)
+	enemyWell.playerWon.connect(_on_victory)
 	
 
 func _process(_delta):
@@ -56,6 +61,12 @@ func _process(_delta):
 			qHighlight.look_at(result.position)
 			qHighlight.rotate_y(PI)
 
+func _on_victory():
+	get_tree().paused = true
+	endScene.visible = true
 
-
-
+func _on_defeat():
+	get_tree().paused = true
+	var outcomeLabel = get_tree().get_nodes_in_group("Outcome")[0]
+	outcomeLabel.text = "Defeat"
+	endScene.visible = true

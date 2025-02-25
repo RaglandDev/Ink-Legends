@@ -1,0 +1,99 @@
+[gd_scene load_steps=7 format=3 uid="uid://ch4gu1g4ephsr"]
+
+[ext_resource type="FontFile" uid="uid://c1phgmhmjx73i" path="res://assets/InkVerse.ttf" id="1_cp3up"]
+[ext_resource type="Script" path="res://VictoryScreen.gd" id="1_n6g4t"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xwneb"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vgf0x"]
+bg_color = Color(0.150075, 0.150075, 0.150075, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f3t8d"]
+bg_color = Color(0.265361, 0.265361, 0.265361, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xxc5p"]
+
+[node name="VictoryScreen" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_n6g4t")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -34.0
+offset_right = 250.0
+offset_bottom = 166.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+
+[node name="PlayAgain" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_cp3up")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_xwneb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vgf0x")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_f3t8d")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xxc5p")
+text = "Play Again"
+
+[node name="MainMenu" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_cp3up")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_xwneb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vgf0x")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_f3t8d")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xxc5p")
+text = "Main Menu
+"
+
+[node name="Outcome" type="Label" parent="." groups=["Outcome"]]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -165.0
+offset_top = -202.0
+offset_right = 165.0
+offset_bottom = -62.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = ExtResource("1_cp3up")
+theme_override_font_sizes/font_size = 100
+text = "Victory"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="VBoxContainer/PlayAgain" to="." method="_on_play_again_pressed"]
+[connection signal="pressed" from="VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]
