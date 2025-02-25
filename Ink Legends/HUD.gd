@@ -15,11 +15,6 @@ var qAim = false
 var qHighlight = null
 
 func _ready():
-	if get_tree().get_nodes_in_group("Player").size() >= 1:
-		player = get_tree().get_nodes_in_group("Player")[0]
-	if player != null:
-		health.value = player.hp
-		ink.value = player.ink
 	var playerWell = get_tree().get_nodes_in_group("Player Well")[0]
 	var enemyWell = get_tree().get_nodes_in_group("Enemy Well")[0]
 	playerWell.enemyWon.connect(_on_defeat)
@@ -27,6 +22,12 @@ func _ready():
 	
 
 func _process(_delta):
+	if get_tree().get_nodes_in_group("Player").size() >= 1:
+		player = get_tree().get_nodes_in_group("Player")[0]
+	if player != null:
+		health.value = player.hp
+		ink.value = player.ink
+		
 	if Input.is_action_just_released("Q") and qHighlight != null:
 		qHighlight.queue_free()
 		qAim = false

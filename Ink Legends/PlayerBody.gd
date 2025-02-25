@@ -5,7 +5,7 @@ extends CharacterBody3D
 
 var maxSpeed = 10
 var hp = 100
-var ink = 100
+var ink = 0.0
 
 var idle = false
 var sprint = false 
@@ -76,3 +76,8 @@ func _on_animation_player_animation_finished(anim_name):
 		idle = true 
 		sprint = false
 
+
+
+func _on_timer_timeout():
+	if ink < 100:
+		ink += .1
