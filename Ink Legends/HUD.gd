@@ -3,6 +3,7 @@ extends CanvasLayer
 @onready var health = $Control/Bottom/HIBar/Health
 @onready var ink = $Control/Bottom/HIBar/Ink
 @onready var endScene = $VictoryScreen
+@onready var pauseScene = $PauseScreen
 
 var qScene = preload("res://SkillShot.tscn")
 var qProjScene = preload("res://QProjectile.tscn")
@@ -60,7 +61,8 @@ func _process(_delta):
 			result.position.y = qHighlight.position.y
 			qHighlight.look_at(result.position)
 			qHighlight.rotate_y(PI)
-
+			
+		
 func _on_victory():
 	get_tree().paused = true
 	endScene.visible = true
