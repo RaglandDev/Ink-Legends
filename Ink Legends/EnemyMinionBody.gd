@@ -9,12 +9,14 @@ var hp = 10
 
 var tower = null
 var gameOver = false
+var player = null
 
 func _ready():
 	var playerWell = get_tree().get_nodes_in_group("Player Well")[0]
 	var enemyWell = get_tree().get_nodes_in_group("Enemy Well")[0]
 	playerWell.enemyWon.connect(_on_game_over)
 	enemyWell.playerWon.connect(_on_game_over)
+	player = get_tree().get_nodes_in_group("Player")[0]
 	checkTarget()
 
 func _process(delta):
@@ -25,6 +27,7 @@ func _process(delta):
 	
 	if hp <= 0:
 		queue_free()
+		player.ink += 10
 
 func moveToPoint(_delta, speed, next_position):
 	var direction = global_position.direction_to(next_position)
